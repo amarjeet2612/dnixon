@@ -12,6 +12,7 @@
       background: #f5f7fa;
       scroll-behavior: smooth;
     }
+
     header {
       background: linear-gradient(90deg, #4facfe, #00f2fe);
       text-align: center;
@@ -35,11 +36,13 @@
     .menu-icon {
       font-size: 30px;
       cursor: pointer;
+      color: #000;
+      background: white;
+      border-radius: 6px;
+      padding: 5px;
     }
     .nav-links {
       display: none;
-      background: white;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       position: absolute;
       top: 40px;
       left: 0;
@@ -51,7 +54,8 @@
     }
     .nav-links li a {
       text-decoration: none;
-      color: #333;
+      color: #000;
+      font-weight: bold;
     }
     input[type=checkbox]:checked ~ .nav-links {
       display: block;
@@ -68,6 +72,7 @@
       border: 5px solid white;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
+
     .dnixon-animation {
       font-size: 32px;
       font-weight: bold;
@@ -79,6 +84,7 @@
     }
     .dni { animation: slideInLeft 1.5s forwards; opacity: 0; }
     .xon { animation: slideInRight 1.5s forwards; opacity: 0; }
+
     @keyframes slideInLeft {
       from { transform: translateX(-100px); opacity: 0; }
       to { transform: translateX(0); opacity: 1; }
@@ -150,7 +156,6 @@
       gap: 20px;
       margin-top: 20px;
     }
-
     .footer-icons img {
       width: 40px;
       height: 40px;
@@ -175,10 +180,10 @@
   <input type="checkbox" id="menu-toggle"/>
   <label for="menu-toggle" class="menu-icon">&#9776;</label>
   <ul class="nav-links">
-    <li><a href="#profile">Home</a></li>
-    <li><a href="#blogs">Blog</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#profile"><strong>Home</strong></a></li>
+    <li><a href="#blogs"><strong>Blog</strong></a></li>
+    <li><a href="#about"><strong>About</strong></a></li>
+    <li><a href="#contact"><strong>Contact</strong></a></li>
   </ul>
 </nav>
 
@@ -196,13 +201,13 @@
 <div class="container">
   <!-- Search Bar -->
   <div class="search-bar">
-    <input type="text" id="searchInput" onkeyup="searchBlogs()" placeholder="Search blogs... (e.g. image, portrait)">
+    <input type="text" id="searchInput" onkeyup="searchBlogs()" placeholder="Search">
   </div>
 
   <!-- Blog Cards -->
   <div id="blogs">
     <div class="blog-card">
-      <h3>"Many Lives, One Face: Redefining Character Design with AI"</h3>
+      <h3>Many Lives, One Face: Redefining Character Design with AI</h3>
       <p>This blog discusses how AI can generate stunning image visuals...</p>
       <a href="blog1.html" target="_blank">Read Full Blog</a>
     </div>
@@ -214,7 +219,7 @@
   </div>
 </div>
 
-<!-- Footer Background Wrap Starts -->
+<!-- Footer -->
 <div class="footer-bg">
   <div class="container">
     <div class="about" id="about">
@@ -235,7 +240,10 @@
     </div>
   </div>
 </div>
-
+<div style="text-align:center; padding: 20px 10px; font-size: 14px; color: #fff; background-color: #111;">
+  © 2025 D-NIXON. All rights reserved.
+</div>
+  
 <script>
   function searchBlogs() {
     const input = document.getElementById('searchInput').value.toLowerCase();
