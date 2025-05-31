@@ -11,6 +11,7 @@
       margin: 0;
       background: #f5f7fa;
       scroll-behavior: smooth;
+      padding-top: 60px; /* Space for fixed search bar */
     }
 
     nav {
@@ -69,10 +70,7 @@
       gap: 20px;
     }
 
-    .search-icon {
-      font-size: 20px;
-      cursor: pointer;
-    }
+    /* Removed .search-icon styles since icon is removed */
 
     .hamburger {
       display: flex;
@@ -88,48 +86,50 @@
       border-radius: 5px;
     }
 
+    /* Search overlay fixed on top */
     .search-overlay {
-      display: none;
       position: fixed;
-      top: 60px;
+      top: 0;
       left: 0;
       right: 0;
       background: white;
-      z-index: 999;
-      padding: 10px 20px;
+      z-index: 1100;
+      padding: 5px 15px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
     }
 
     .search-overlay input {
-      flex: 1;
-      padding: 6px 10px;
+      width: 250px;
+      padding: 8px 12px;
       font-size: 14px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      max-width: 400px;
-      height: 35px;
+      border-radius: 20px;
+      border: 1.5px solid #ccc;
+      outline: none;
+      transition: border-color 0.3s ease;
     }
 
-    .search-overlay button {
-      margin-left: 10px;
-      background: #f44336;
-      border: none;
-      color: white;
-      padding: 6px 12px;
-      font-size: 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      height: 35px;
+    .search-overlay input::placeholder {
+      color: #aaa;
+      font-weight: 500;
     }
+
+    .search-overlay input:focus {
+      border-color: #4facfe;
+      box-shadow: 0 0 8px #4facfe;
+    }
+
+    /* Remove search overlay button - you can close by clicking elsewhere or add if needed */
+    /* If you want close button, let me know */
 
     header {
       background: linear-gradient(90deg, #4facfe, #00f2fe);
       text-align: center;
       color: white;
       padding: 60px 20px;
+      margin-top: 40px; /* to compensate for fixed search */
     }
 
     header h1 {
@@ -260,17 +260,17 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="right-icons">
-    <div class="search-icon" onclick="toggleSearch()">🔍</div>
+    <!-- Search icon removed -->
     <div class="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
 
-<!-- Search Overlay -->
+<!-- Fixed Search Box -->
 <div class="search-overlay" id="searchOverlay">
   <input type="text" placeholder="Search" onkeyup="searchBlogs()" />
-  <button onclick="toggleSearch()">❌</button>
+  <!-- Removed close button for clean look -->
 </div>
 
 <header>
@@ -330,17 +330,12 @@
 
 <script>
   function searchBlogs() {
-    const input = document.querySelector('#searchOverlay input').value.toLowerCase();
+    const input = document.querySelector('.search-overlay input').value.toLowerCase();
     const cards = document.querySelectorAll('.blog-card');
     cards.forEach(card => {
       const text = card.innerText.toLowerCase();
       card.style.display = text.includes(input) ? '' : 'none';
     });
-  }
-
-  function toggleSearch() {
-    const overlay = document.getElementById('searchOverlay');
-    overlay.style.display = (overlay.style.display === 'flex') ? 'none' : 'flex';
   }
 
   function toggleMenu() {
