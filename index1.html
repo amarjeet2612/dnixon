@@ -29,7 +29,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-shrink: 0;
     }
 
     .logo-box {
@@ -51,100 +50,83 @@
       color: #333;
     }
 
-    /* Center container with search input and hidden nav links */
-    .center-container {
-      flex: 1;
+    /* Search Box in center */
+    .search-container {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 10px;
+      width: 300px;
+      background: rgba(128, 128, 128, 0.3);
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       display: flex;
-      justify-content: center;
-      position: relative;
-      flex-direction: column;
       align-items: center;
     }
 
-    .center-container input[type="text"] {
-      width: 320px;
-      padding: 10px 15px;
-      border-radius: 25px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    .search-container input {
+      flex: 1;
+      border: none;
       outline: none;
-      transition: border-color 0.3s ease;
+      background: transparent;
+      padding: 8px 12px;
+      font-size: 16px;
+      border-radius: 20px;
+      color: #333;
     }
 
-    .center-container input[type="text"]:focus {
-      border-color: #4facfe;
-      box-shadow: 0 0 8px #4facfe;
-    }
-
-    /* Nav links dropdown under search box */
-    #navLinks {
-      list-style: none;
-      padding: 10px 0;
-      margin: 5px 0 0 0;
+    /* Hide default nav links */
+    ul.nav-links {
       display: none;
       flex-direction: column;
       background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-radius: 8px;
       position: absolute;
-      top: 48px;
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 220px;
-      z-index: 1001;
+      top: 50px; /* just below search */
+      left: 0;
+      right: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 10px 20px;
+      margin: 0;
+      list-style: none;
+      z-index: 999;
     }
 
-    #navLinks li {
-      padding: 12px 25px;
-      border-bottom: 1px solid #eee;
+    ul.nav-links li {
+      margin: 10px 0;
     }
 
-    #navLinks li:last-child {
-      border-bottom: none;
-    }
-
-    #navLinks li a {
+    ul.nav-links li a {
       text-decoration: none;
-      color: #333;
       font-weight: 600;
-      display: block;
-      transition: color 0.3s ease;
+      color: #333;
+      font-size: 18px;
     }
 
-    #navLinks li a:hover {
-      color: #4facfe;
-    }
-
-    .right-icons {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-shrink: 0;
-    }
-
-    /* Hamburger menu */
     .hamburger {
       display: flex;
       flex-direction: column;
       cursor: pointer;
-      gap: 5px;
+      z-index: 1001;
     }
 
     .hamburger span {
       height: 3px;
       width: 25px;
       background: #333;
+      margin: 3px 0;
       border-radius: 5px;
-      transition: 0.3s;
     }
 
-    /* Other styles unchanged from original */
+    /* Rest of the page styling */
+
     header {
       background: linear-gradient(90deg, #4facfe, #00f2fe);
       text-align: center;
       color: white;
       padding: 60px 20px;
+      position: relative;
+      z-index: 1;
     }
 
     header h1 {
@@ -268,29 +250,24 @@
     <div class="logo-box">DN</div>
     <div class="logo-text">DNIXON</div>
   </div>
-
-  <div class="center-container">
-    <input 
-      type="text" 
-      placeholder="Search..." 
-      onkeyup="searchBlogs()" 
-    />
-    <ul id="navLinks">
-      <li><a href="#profile">Home</a></li>
-      <li><a href="#blogs">Blogs</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  
+  <!-- Search box center -->
+  <div class="search-container">
+    <input type="text" placeholder="Search" />
   </div>
 
-  <div class="right-icons">
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
   </div>
 </nav>
+
+<!-- Nav Links (hidden by default) -->
+<ul class="nav-links" id="navLinks">
+  <li><a href="#profile">Home</a></li>
+  <li><a href="#blogs">Blogs</a></li>
+  <li><a href="#about">About</a></li>
+  <li><a href="#contact">Contact</a></li>
+</ul>
 
 <header>
   <h1>WELCOME TO D-NIXON'S BLOGS</h1>
@@ -317,4 +294,46 @@
         <h3>The Rise of AI Portraits</h3>
         <p>How AI is revolutionizing portrait art in modern digital galleries.</p>
         <a href="blog2.html" target="_blank">Read Full Blog</a>
-      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer-bg">
+  <div class="container">
+    <div class="about" id="about">
+      <h2>About Me</h2>
+      <p>Hey! I'm AMARJEET aka D-NIXON. I create AI characters using ChatGPT, Tensor Art, Kling and more.</p>
+    </div>
+
+    <div class="contact" id="contact">
+      <h2>Contact</h2>
+      <p>Email: amarjeetk2612@gmail.com</p>
+    </div>
+
+    <div class="footer-icons">
+      <a href="https://instagram.com/" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+      <a href="https://x.com/" target="_blank"><img src="x.png" alt="X"></a>
+      <a href="https://linkedin.com/" target="_blank"><img src="linkedin.png" alt="LinkedIn"></a>
+    </div>
+
+    <div class="copyright">
+      © 2025 D-NIXON. All rights reserved.
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    if (navLinks.style.display === 'flex') {
+      navLinks.style.display = 'none';
+    } else {
+      navLinks.style.display = 'flex';
+    }
+  }
+</script>
+
+</body>
+</html>
