@@ -190,3 +190,176 @@
       overflow: hidden;
       transition: transform 0.3s ease;
       display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .blog-content {
+      padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .blog-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+      color: #333;
+    }
+
+    .blog-card p {
+      flex-grow: 1;
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .blog-card a {
+      align-self: flex-start;
+      background: #8e2de2;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+
+    .blog-card a:hover {
+      background: #6a00f4;
+    }
+
+    /* Footer */
+    .footer-bg {
+      background-image: url('ai_footer_bg.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 50px 20px 30px;
+      color: white;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      user-select: none;
+    }
+
+    .footer-bg .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .about, .contact {
+      flex: 1 1 300px;
+    }
+
+    .about h2, .contact h2 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+
+    .about p, .contact p {
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: 400px;
+    }
+
+    .footer-icons {
+      flex: 1 1 300px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 25px;
+      padding-bottom: 10px;
+    }
+
+    .footer-icons a {
+      display: inline-block;
+    }
+
+    .footer-icons img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: white;
+      padding: 5px;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .footer-icons img:hover {
+      background: #8e2de2;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      /* Navbar */
+      nav {
+        padding: 10px 15px;
+      }
+
+      /* Show hamburger */
+      .hamburger {
+        display: flex;
+      }
+
+      /* Hide nav links initially */
+      ul.nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: linear-gradient(90deg, #6a00f4, #8e2de2);
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 0;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        border-radius: 0 0 10px 10px;
+        user-select: none;
+      }
+
+      /* Show nav links when active */
+      ul.nav-links.active {
+        display: flex;
+      }
+
+      /* Search bar full width below navbar */
+      .search-container {
+        position: static;
+        width: 100%;
+        margin: 10px 0 0 0;
+        max-width: none;
+      }
+
+      /* Logo text smaller */
+      .logo-text {
+        font-size: 20px;
+      }
+
+      /* Profile image smaller */
+      .profile {
+        width: 100px;
+        height: 100px;
+        margin: -50px auto 30px;
+        border-width: 4px;
+      }
