@@ -3,50 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DNIXON</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Responsive Navigation Bar</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
       margin: 0;
-      background: #f5f7fa;
+      font-family: Arial, sans-serif;
     }
 
+    /* Navigation Bar Styles */
     nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 10px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
-      background: white;
       z-index: 1000;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-box {
-      background: linear-gradient(90deg, #4facfe, #00f2fe);
-      color: white;
+    .logo {
+      font-size: 24px;
       font-weight: bold;
-      font-size: 22px;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
+      color: #333333;
     }
 
-    .logo-text {
-      font-weight: bold;
-      font-size: 22px;
-      color: #333;
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #007BFF;
     }
 
     .hamburger {
@@ -58,83 +54,58 @@
     .hamburger span {
       height: 3px;
       width: 25px;
-      background: #333;
-      margin: 3px 0;
-      border-radius: 5px;
+      background-color: #333333;
+      margin: 4px 0;
+      border-radius: 2px;
     }
 
-    ul.nav-links {
-      display: flex;
-      gap: 20px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    ul.nav-links li a {
-      text-decoration: none;
-      font-weight: 600;
-      color: #333;
-      font-size: 18px;
-    }
-
+    /* Mobile Styles */
     @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #ffffff;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
       .hamburger {
         display: flex;
       }
-
-      ul.nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background: white;
-        padding: 10px 20px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        border-radius: 8px;
-        width: max-content;
-        animation: slideDown 0.3s ease;
-      }
-
-      ul.nav-links.show {
-        display: flex;
-      }
-    }
-
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo-area">
-    <div class="logo-box">DN</div>
-    <div class="logo-text">DNIXON</div>
-  </div>
+  <nav>
+    <div class="logo">DNIXON</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#blogs">Blogs</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
 
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
 
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#blogs" onclick="closeMenu()">Blogs</a></li>
-    <li><a href="#about" onclick="closeMenu()">About</a></li>
-    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
-  </ul>
-</nav>
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 
-<script>
-  function toggleMenu() {
-    const nav = document.getElementById("navLinks");
-    nav.classList.toggle("show");
-  }
-
-  function closeMenu() {
-    const nav = document.getElementById("navLinks");
-    nav.classList.remove("show");
-  }
-</script>
+</body>
+</html>
