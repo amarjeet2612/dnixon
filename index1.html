@@ -10,7 +10,6 @@
       font-family: 'Poppins', sans-serif;
       margin: 0;
       background: #f5f7fa;
-      scroll-behavior: smooth;
     }
 
     nav {
@@ -23,7 +22,6 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      position: relative;
     }
 
     .logo-area {
@@ -51,54 +49,36 @@
       color: #333;
     }
 
-    /* Navigation links container hidden by default */
-    #navLinks {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-      margin: 0;
-      background: #fff;
+    .search-container {
       position: absolute;
-      top: 60px; /* below navbar */
-      right: 20px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      opacity: 0;
-      transform: translateY(-20px);
-      pointer-events: none;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      z-index: 1001;
-      flex-direction: row !important;
-    }
-
-    #navLinks.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    #navLinks li {
-      margin: 0;
-    }
-
-    #navLinks li a {
-      text-decoration: none;
-      font-weight: 600;
-      color: #333;
-      font-size: 16px;
-    }
-
-    .right-icons {
+      left: 50%;
+      transform: translateX(-50%);
+      top: 10px;
+      width: 300px;
+      background: rgba(128, 128, 128, 0.3);
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       display: flex;
       align-items: center;
-      gap: 20px;
+    }
+
+    .search-container input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 8px 12px;
+      font-size: 16px;
+      border-radius: 20px;
+      color: #333;
     }
 
     .hamburger {
       display: flex;
       flex-direction: column;
       cursor: pointer;
+      z-index: 1001;
     }
 
     .hamburger span {
@@ -109,28 +89,38 @@
       border-radius: 5px;
     }
 
-    /* Search box styling */
-    .search-overlay {
-      position: fixed;
-      top: 10px;
-      right: 20px;
-      background: rgba(0,0,0,0.1);
-      padding: 8px 15px;
-      border-radius: 25px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 1002;
+    ul.nav-links {
+      display: none;
+      flex-direction: row;
+      gap: 20px;
+      background: white;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      padding: 10px 20px;
+      margin: 0;
+      list-style: none;
+      justify-content: center;
+      animation: slideDown 0.3s ease forwards;
     }
 
-    .search-overlay input {
-      border: none;
-      background: transparent;
-      outline: none;
-      font-size: 16px;
-      width: 180px;
+    ul.nav-links li a {
+      text-decoration: none;
+      font-weight: 600;
       color: #333;
+      font-size: 18px;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     header {
@@ -261,38 +251,34 @@
     <div class="logo-box">DN</div>
     <div class="logo-text">DNIXON</div>
   </div>
+  
+  <div class="search-container">
+    <input type="text" placeholder="Search" />
+  </div>
 
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#blogs">Blogs</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-
-  <div class="right-icons">
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- Search Box -->
-<div class="search-overlay">
-  <input type="text" placeholder="Search" />
-</div>
+<ul class="nav-links" id="navLinks">
+  <li><a href="#blogs">Blogs</a></li>
+  <li><a href="#about">About</a></li>
+  <li><a href="#contact">Contact</a></li>
+</ul>
 
 <header>
   <h1>WELCOME TO D-NIXON'S BLOGS</h1>
 </header>
 
 <div class="profile" id="profile">
-  <img src="profile.jpg" alt="Profile Picture" />
+  <img src="profile.jpg" alt="Profile Picture">
 </div>
 
 <div class="container">
-  <!-- Blog Grid -->
   <div id="blogs">
     <div class="blog-card">
-      <img src="blog1-img.png" alt="Blog 1" />
+      <img src="blog1-img.png" alt="Blog 1">
       <div class="blog-content">
         <h3>Many Lives, One Face</h3>
         <p>Exploring AI character design across multiple styles and personalities.</p>
@@ -300,7 +286,7 @@
       </div>
     </div>
     <div class="blog-card">
-      <img src="blog2-img.jpg" alt="Blog 2" />
+      <img src="blog2-img.jpg" alt="Blog 2">
       <div class="blog-content">
         <h3>The Rise of AI Portraits</h3>
         <p>How AI is revolutionizing portrait art in modern digital galleries.</p>
@@ -310,7 +296,6 @@
   </div>
 </div>
 
-<!-- Footer -->
 <div class="footer-bg">
   <div class="container">
     <div class="about" id="about">
@@ -324,9 +309,23 @@
     </div>
 
     <div class="footer-icons">
-      <a href="https://instagram.com/" target="_blank"><img src="instagram.png" alt="Instagram" /></a>
-      <a href="https://x.com/" target="_blank"><img src="x.png" alt="X" /></a>
-      <a href="https://linkedin.com/" target="_blank"><img src="linkedin.png" alt="LinkedIn" /></a>
+      <a href="https://instagram.com/" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+      <a href="https://x.com/" target="_blank"><img src="x.png" alt="X"></a>
+      <a href="https://linkedin.com/" target="_blank"><img src="linkedin.png" alt="LinkedIn"></a>
     </div>
 
-    <div class="copyright">© 2025 D-N
+    <div class="copyright">
+      © 2025 D-NIXON. All rights reserved.
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.style.display = (navLinks.style.display === 'flex') ? 'none' : 'flex';
+  }
+</script>
+
+</body>
+</html>
