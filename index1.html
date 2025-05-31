@@ -105,10 +105,12 @@
 
     .search-overlay input {
       flex: 1;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 14px;
+      border-radius: 6px;
       border: 1px solid #ccc;
+      max-width: 400px;
+      height: 35px;
     }
 
     .search-overlay button {
@@ -116,10 +118,11 @@
       background: #f44336;
       border: none;
       color: white;
-      padding: 8px 12px;
-      font-size: 16px;
+      padding: 6px 12px;
+      font-size: 14px;
       border-radius: 6px;
       cursor: pointer;
+      height: 35px;
     }
 
     header {
@@ -266,7 +269,7 @@
 
 <!-- Search Overlay -->
 <div class="search-overlay" id="searchOverlay">
-  <input type="text" placeholder="Search blog by title or content..." onkeyup="searchBlogs()" />
+  <input type="text" placeholder="Search" onkeyup="searchBlogs()" />
   <button onclick="toggleSearch()">❌</button>
 </div>
 
