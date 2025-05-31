@@ -90,6 +90,13 @@
       border-radius: 5px;
     }
 
+    .search-icon {
+      display: none;
+      font-size: 22px;
+      cursor: pointer;
+      padding: 5px 10px;
+    }
+
     ul.nav-links {
       display: none;
       flex-direction: row;
@@ -243,42 +250,43 @@
       font-size: 14px;
     }
 
-    /* ✅ Responsive Styles */
     @media (max-width: 768px) {
-      nav {
-        flex-wrap: nowrap;
-      }
-
       .search-container {
-        position: static;
-        width: 100%;
-        margin: 10px 0 0 0;
-        transform: none;
-        background: #e0e0e0cc;
-        box-shadow: none;
-      }
-
-      ul.nav-links {
-        position: static;
+        width: 90%;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
         display: none;
-        flex-direction: column;
-        background: transparent;
-        box-shadow: none;
-        padding: 0;
-        margin-top: 10px;
       }
 
-      ul.nav-links.show {
+      .search-container.show {
         display: flex;
       }
 
-      .hamburger {
-        margin-left: auto;
-        z-index: 1100;
+      ul.nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: white;
+        display: none;
       }
 
-      .logo-text {
-        font-size: 18px;
+      .blog-card img {
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .footer-bg {
+        padding: 20px 10px;
+        text-align: center;
+      }
+
+      .footer-icons img {
+        width: 30px;
+        height: 30px;
       }
 
       .profile img {
@@ -286,28 +294,34 @@
         height: 100px;
       }
 
-      .footer-icons img {
-        width: 30px;
-        height: 30px;
+      .logo-text {
+        font-size: 18px;
+      }
+
+      .hamburger {
+        margin-left: auto;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- Navbar -->
 <nav>
   <div class="logo-area">
     <div class="logo-box">DN</div>
     <div class="logo-text">DNIXON</div>
   </div>
-  
-  <div class="search-container">
+
+  <div class="search-container" id="searchContainer">
     <input type="text" placeholder="Search" />
   </div>
 
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
+  </div>
+
+  <div class="search-icon" onclick="toggleSearch()">
+    🔍
   </div>
 </nav>
 
@@ -370,11 +384,17 @@
   </div>
 </div>
 
-<!-- ✅ New script -->
 <script>
   function toggleMenu() {
     const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('show');
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.alignItems = 'center';
+  }
+
+  function toggleSearch() {
+    const searchContainer = document.getElementById('searchContainer');
+    searchContainer.classList.toggle('show');
   }
 </script>
 
