@@ -22,6 +22,7 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      flex-wrap: wrap;
     }
 
     .logo-area {
@@ -241,6 +242,55 @@
       color: white;
       font-size: 14px;
     }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .search-container {
+        width: 90%;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      ul.nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: white;
+        display: none;
+      }
+
+      .blog-card img {
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .footer-bg {
+        padding: 20px 10px;
+        text-align: center;
+      }
+
+      .footer-icons img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .profile img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .logo-text {
+        font-size: 18px;
+      }
+
+      .hamburger {
+        margin-left: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -323,7 +373,13 @@
 <script>
   function toggleMenu() {
     const navLinks = document.getElementById('navLinks');
-    navLinks.style.display = (navLinks.style.display === 'flex') ? 'none' : 'flex';
+    if (navLinks.style.display === 'flex') {
+      navLinks.style.display = 'none';
+    } else {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.alignItems = 'center';
+    }
   }
 </script>
 
