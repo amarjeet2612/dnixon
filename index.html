@@ -13,7 +13,6 @@
       scroll-behavior: smooth;
     }
 
-    /* Sticky Navbar */
     nav {
       position: sticky;
       top: 0;
@@ -64,12 +63,72 @@
       color: #333;
     }
 
+    .right-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .search-icon {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #333;
+      margin: 3px 0;
+      border-radius: 5px;
+    }
+
+    .search-overlay {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: white;
+      z-index: 999;
+      padding: 10px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-overlay input {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .search-overlay button {
+      margin-left: 10px;
+      background: #f44336;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
     header {
       background: linear-gradient(90deg, #4facfe, #00f2fe);
       text-align: center;
       color: white;
       padding: 60px 20px;
     }
+
     header h1 {
       margin: 0;
       font-size: 2.5rem;
@@ -92,20 +151,6 @@
       max-width: 1200px;
       margin: auto;
       padding: 30px 20px;
-    }
-
-    .search-bar {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .search-bar input {
-      padding: 10px;
-      width: 60%;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
     #blogs {
@@ -199,19 +244,31 @@
 </head>
 <body>
 
-<!-- Sticky Navbar -->
+<!-- Navbar -->
 <nav>
   <div class="logo-area">
     <div class="logo-box">DN</div>
     <div class="logo-text">DNIXON</div>
   </div>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#profile">Home</a></li>
     <li><a href="#blogs">Blogs</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <div class="right-icons">
+    <div class="search-icon" onclick="toggleSearch()">🔍</div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
 </nav>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="searchOverlay">
+  <input type="text" placeholder="Search blog by title or content..." onkeyup="searchBlogs()" />
+  <button onclick="toggleSearch()">❌</button>
+</div>
 
 <header>
   <h1>WELCOME TO D-NIXON'S BLOGS</h1>
@@ -222,11 +279,6 @@
 </div>
 
 <div class="container">
-  <!-- Search Bar -->
-  <div class="search-bar">
-    <input type="text" id="searchInput" onkeyup="searchBlogs()" placeholder="Search blog by title or text...">
-  </div>
-
   <!-- Blog Grid -->
   <div id="blogs">
     <div class="blog-card">
@@ -275,12 +327,22 @@
 
 <script>
   function searchBlogs() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
+    const input = document.querySelector('#searchOverlay input').value.toLowerCase();
     const cards = document.querySelectorAll('.blog-card');
     cards.forEach(card => {
       const text = card.innerText.toLowerCase();
       card.style.display = text.includes(input) ? '' : 'none';
     });
+  }
+
+  function toggleSearch() {
+    const overlay = document.getElementById('searchOverlay');
+    overlay.style.display = (overlay.style.display === 'flex') ? 'none' : 'flex';
+  }
+
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
   }
 </script>
 
