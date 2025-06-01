@@ -22,6 +22,7 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      flex-wrap: wrap;
     }
 
     .logo-area {
@@ -74,11 +75,24 @@
       color: #333;
     }
 
-    .hamburger {
+    .hamburger, .search-icon {
       display: flex;
       flex-direction: column;
       cursor: pointer;
       z-index: 1001;
+      margin-left: 10px;
+    }
+
+    .search-icon {
+      display: none;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .search-icon img {
+      width: 24px;
+      height: 24px;
     }
 
     .hamburger span {
@@ -241,23 +255,76 @@
       color: white;
       font-size: 14px;
     }
+
+    @media (max-width: 768px) {
+      .search-container {
+        width: 90%;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+      }
+
+      .search-icon {
+        display: flex;
+      }
+
+      ul.nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: white;
+        display: none;
+      }
+
+      .blog-card img {
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .footer-bg {
+        padding: 20px 10px;
+        text-align: center;
+      }
+
+      .footer-icons img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .profile img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .logo-text {
+        font-size: 18px;
+      }
+    }
   </style>
 </head>
 <body>
 
-<!-- Navbar -->
 <nav>
   <div class="logo-area">
     <div class="logo-box">DN</div>
     <div class="logo-text">DNIXON</div>
   </div>
-  
-  <div class="search-container">
+
+  <div class="search-container" id="mobileSearchBox">
     <input type="text" placeholder="Search" />
   </div>
 
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
+  <div style="display: flex; align-items: center; gap: 10px;">
+  <div class="search-icon" onclick="toggleSearch()">
+  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAqklEQVRIie2UsQ2DMBBF39I0ESvQHQ6TUlDiEqXqC4gXMQIfbJIkLfwGNsTbM0kK7fr8vKCdZzHfB8RwgJ/3Q0NPNiAXzbiQEYbgw6DMFgC4AzwHCDo8z6lAJ1BgoRS3XJY2fPpEK5QGELizMpw7P5uXqC5mLkPQ2lwAOdG2JKD0tiA+FdfL8RMALbWYgl7htI54AxEcgH+JyNK5iBYx1oTYCHDzEd7GshyW8QnjZnWBDRzQkTWAgzDAE6f6BbCaD7vJ6UAAAAASUVORK5CYII=" alt="Search Icon" />
+</div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
@@ -323,7 +390,12 @@
 <script>
   function toggleMenu() {
     const navLinks = document.getElementById('navLinks');
-    navLinks.style.display = (navLinks.style.display === 'flex') ? 'none' : 'flex';
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function toggleSearch() {
+    const searchBox = document.getElementById('mobileSearchBox');
+    searchBox.style.display = searchBox.style.display === 'flex' ? 'none' : 'flex';
   }
 </script>
 
