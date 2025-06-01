@@ -1,173 +1,176 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DNIXON ChatMate</title>
+  <title>DNIXON - Blogs, Profile, Contact</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
+    }body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-    }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  color: #fff;
+  padding: 10px 20px;
+  position: relative;
+}
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #222;
-      color: #fff;
-      position: relative;
-    }
+.logo-area {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-    }
+.logo-box {
+  background-color: #ff5722;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+}
 
-    .logo-box {
-      background-color: #0f62fe;
-      color: white;
-      padding: 5px 10px;
-      font-weight: bold;
-      border-radius: 5px;
-    }
+.logo-text {
+  margin-left: 10px;
+  font-size: 1.2rem;
+}
 
-    .logo-text {
-      margin-left: 10px;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
+.search-container {
+  display: none;
+}
 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
-    .search-container {
-      display: none;
-    }
+.search-icon img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
 
-    .search-icon {
-      cursor: pointer;
-    }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
 
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+}
 
-    .hamburger span {
-      background: white;
-      height: 2px;
-      width: 20px;
-      margin: 3px 0;
-    }
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: #333;
+  padding: 10px 0;
+}
 
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 20px;
-      justify-content: center;
-      padding: 10px;
-      background-color: #f4f4f4;
-    }
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-    .nav-links li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
+/* Mobile View */
+@media (max-width: 768px) {
+  .search-container {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 10px;
+  }
 
-    @media screen and (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background-color: #f4f4f4;
-        position: absolute;
-        top: 60px;
-        width: 100%;
-        left: 0;
-        padding: 10px 0;
-        z-index: 1000;
-      }
+  .search-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
 
-      .hamburger {
-        display: flex;
-      }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+  }
 
-      .search-container {
-        display: block;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        padding: 10px;
-        background: #fff;
-        z-index: 999;
-        display: none;
-      }
+  .nav-links li {
+    margin: 10px 0;
+  }
 
-      .search-container input {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-      }
-    }
+  .hamburger {
+    display: flex;
+  }
+}
+
   </style>
-</head>
-<body>
+</head><body>
   <nav>
-    <a href="#" class="logo-area" style="text-decoration: none;">
+    <a href="#" class="logo-area">
       <div class="logo-box">DN</div>
       <div class="logo-text">DNIXON</div>
-    </a>
+    </a><div class="search-container" id="mobileSearchBox">
+  <input type="text" placeholder="Search" />
+</div>
 
-    <div class="nav-right">
-      <div class="search-icon" onclick="toggleSearch()">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAqklEQVRIie2UsQ2DMBBF39I0ESvQHQ6TUlDiEqXqC4gXMQIfbJIkLfwGNsTbM0kK7fr8vKCdZzHfB8RwgJ/3Q0NPNiAXzbiQEYbgw6DMFgC4AzwHCDo8z6lAJ1BgoRS3XJY2fPpEK5QGELizMpw7P5uXqC5mLkPQ2lwAOdG2JKD0tiA+FdfL8RMALbWYgl7htI54AxEcgH+JyNK5iBYx1oTYCHDzEd7GshyW8QnjZnWBDRzQkTWAgzDAE6f6BbCaD7vJ6UAAAAASUVORK5CYII=" alt="Search Icon" />
-      </div>
-      <div class="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </nav>
-
-  <div class="search-container" id="mobileSearchBox">
-    <input type="text" placeholder="Search" />
+<div class="nav-right">
+  <div class="search-icon" onclick="toggleSearch()">
+    <img
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAqklEQVRIie2UsQ2DMBBF39I0ESvQHQ6TUlDiEqXqC4gXMQIfbJIkLfwGNsTbM0kK7fr8vKCdZzHfB8RwgJ/3Q0NPNiAXzbiQEYbgw6DMFgC4AzwHCDo8z6lAJ1BgoRS3XJY2fPpEK5QGELizMpw7P5uXqC5mLkPQ2lwAOdG2JKD0tiA+FdfL8RMALbWYgl7htI54AxEcgH+JyNK5iBYx1oTYCHDzEd7GshyW8QnjZnWBDRzQkTWAgzDAE6f6BbCaD7vJ6UAAAAASUVORK5CYII="
+      alt="Search Icon" />
   </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</div>
 
-  <ul class="nav-links" id="navLinks">
+  </nav>  <ul class="nav-links" id="navLinks">
     <li><a href="#blogs">Blogs</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
-  </ul>
+  </ul>  <main style="padding: 20px;">
+    <section id="blogs">
+      <h2>Latest Blog Titles</h2>
+      <ul>
+        <li>⚙ Machine Maintenance 101</li>
+        <li>📦 Production Hacks from the Shop Floor</li>
+        <li>🚀 How PLCs Power Smart Manufacturing</li>
+      </ul>
+    </section><section id="about" style="margin-top: 40px;">
+  <h2>About Me</h2>
+  <p>Hi, I'm Amarjeet Kumar — Mechanical Engineer, Plant Maintenance Pro, and the brain behind DNIXON.</p>
+</section>
 
-  <script>
-    function toggleSearch() {
-      const box = document.getElementById("mobileSearchBox");
-      if (box.style.display === "block") {
-        box.style.display = "none";
-      } else {
-        box.style.display = "block";
-      }
-    }
+<section id="contact" style="margin-top: 40px;">
+  <h2>Contact</h2>
+  <p>Email: kunalrd1998@gmail.com</p>
+  <p>Mobile: 8603261989</p>
+</section>
 
+  </main>  <script>
     function toggleMenu() {
-      const links = document.getElementById("navLinks");
-      if (links.style.display === "flex") {
-        links.style.display = "none";
-      } else {
-        links.style.display = "flex";
-      }
+      const navLinks = document.getElementById("navLinks");
+      navLinks.style.display = navLinks.style.display === "flex" ? "none" : "flex";
     }
-  </script>
-</body>
-</html>
+
+    function toggleSearch() {
+      const mobileSearchBox = document.getElementById("mobileSearchBox");
+      mobileSearchBox.style.display = mobileSearchBox.style.display === "block" ? "none" : "block";
+    }
+  </script></body></html>
