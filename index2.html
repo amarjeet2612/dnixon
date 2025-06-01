@@ -1,118 +1,84 @@
-<div class="main">
-  <div class="logo">dnixon</div>
-  <nav>
-    <ul id="menuList">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+<!DOCTYPE html>
+<html lang="en">
 
-    <!-- 🔍 Search icon and input -->
-    <div class="search-container">
-      <i class="fa fa-search search-icon" onclick="toggleSearch()"></i>
-      <input type="text" class="search-input" id="searchInput" placeholder="Search..." style="display: none;" />
-    </div>
-
-    <!-- ☰ Menu icon -->
-    <div class="menu-icon" onclick="toggleMenu()">
-      <i class="fa fa-bars"></i>
-    </div>
-  </nav>
-</div>
-
-<!-- 🔧 JavaScript functions -->
-<script>
-  function toggleMenu() {
-    const menuList = document.getElementById('menuList');
-    menuList.style.display = menuList.style.display === 'none' ? 'block' : 'none';
-  }
-
-  function toggleSearch() {
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput.style.display === 'none') {
-      searchInput.style.display = 'inline-block';
-      searchInput.focus();
-    } else {
-      searchInput.style.display = 'none';
-    }
-  }
-</script>
-
-<!-- 🧼 Basic CSS (minimal to show search cleanly) -->
-<style>
-  .main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f5f5f5;
-  }
-
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-  }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-
-  nav ul li {
-    margin: 0 10px;
-  }
-
-  nav ul li a {
-    text-decoration: none;
-    color: #333;
-  }
-
-  .menu-icon {
-    display: none; /* Show this in responsive via media queries if needed */
-    cursor: pointer;
-    margin-left: 10px;
-  }
-
-  .search-container {
-    position: relative;
-    margin-left: 15px;
-  }
-
-  .search-icon {
-    cursor: pointer;
-    font-size: 18px;
-    color: #333;
-  }
-
-  .search-input {
-    padding: 5px 10px;
-    margin-left: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-
-  /* For small screens, you can show menu icon, hide nav etc. */
-  @media (max-width: 768px) {
-    nav ul {
-      display: none;
-      flex-direction: column;
-      background: #eee;
-      position: absolute;
-      top: 50px;
-      right: 20px;
-      padding: 10px;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DNIXON</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papNM3zN2eQlI2+7XoA0U5L+1b+pKZlI0Uc1SO1kVpWwS2kFwuBO8UozlYZhV+C0TVzDpsK0TuvrUxUo9C2hJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
     }
 
-    .menu-icon {
-      display: block;
+    header {
+      background-color: #1e1e1e;
+      color: #fff;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-  }
-</style>
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      background-color: #333;
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+    }
+
+    .search input {
+      background: none;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 0.3rem;
+    }
+
+    .search i {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">DNIXON</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Blog</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <div class="search">
+        <input type="text" placeholder="Search..." />
+        <i class="fas fa-search"></i>
+      </div>
+    </nav>
+  </header>
+</body>
+
+</html>
