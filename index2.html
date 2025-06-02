@@ -52,61 +52,8 @@
       color: #333;
     }
 
-    .search-container {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 10px;
-      width: 300px;
-      background: rgba(128, 128, 128, 0.3);
-      padding: 5px 10px;
-      border-radius: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      transition: all 0.3s ease;
-    }
-
-    .search-container input {
-      flex: 1;
-      border: none;
-      outline: none;
-      background: transparent;
-      padding: 8px 12px;
-      font-size: 16px;
-      border-radius: 20px;
-      color: #333;
-    }
-
-    .hamburger, .search-icon {
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      z-index: 1001;
-      margin-left: 10px;
-    }
-
-    .search-icon {
-      display: none;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      font-size: 20px;
-      color: #333;
-      padding: 5px;
-    }
-
-    .hamburger span {
-      height: 3px;
-      width: 25px;
-      background: #333;
-      margin: 3px 0;
-      border-radius: 5px;
-    }
-
     ul.nav-links {
       display: flex;
-      flex-direction: row;
       gap: 20px;
       list-style: none;
       margin: 0;
@@ -118,6 +65,22 @@
       color: #333;
       font-size: 18px;
       cursor: pointer;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 1001;
+      margin-left: 10px;
+    }
+
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #333;
+      margin: 3px 0;
+      border-radius: 5px;
     }
 
     header {
@@ -239,62 +202,30 @@
       font-size: 14px;
     }
 
+    /* Responsive */
+
     @media (max-width: 768px) {
       ul.nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        position: absolute;
+        position: fixed;
         top: 60px;
-        left: 0;
         right: 0;
         background: white;
-        display: none;
+        width: 200px;
+        height: calc(100% - 60px);
+        flex-direction: column;
+        padding-top: 20px;
+        gap: 20px;
+        box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
       }
 
       ul.nav-links.show {
-        display: flex !important;
-      }
-
-      .search-container {
-        width: 90%;
-        top: 60px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: none;
-      }
-
-      .search-icon {
-        display: flex;
-      }
-
-      .blog-card img {
-        height: 180px;
-      }
-
-      .footer-bg {
-        padding: 20px 10px;
-        text-align: center;
-      }
-
-      .footer-icons img {
-        width: 30px;
-        height: 30px;
-      }
-
-      .profile img {
-        width: 100px;
-        height: 100px;
-      }
-
-      .logo-text {
-        font-size: 18px;
-      }
-
-      header h1 {
-        font-size: 1.7rem;
+        transform: translateX(0);
       }
     }
+
   </style>
 </head>
 <body>
@@ -305,38 +236,29 @@
     <div class="logo-text">DNIXON</div>
   </a>
 
-  <div class="search-container" id="mobileSearchBox">
-    <input type="text" placeholder="Search" />
-  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#blogs">Blogs</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 
-  <div style="display: flex; align-items: center; gap: 10px;">
-    <div class="search-icon" id="searchToggle">
-      <i class="fas fa-search"></i>
-    </div>
-    <div class="hamburger" id="menuToggle">
-      <span></span><span></span><span></span>
-    </div>
+  <div class="hamburger" id="menuToggle">
+    <span></span><span></span><span></span>
   </div>
 </nav>
-
-<ul class="nav-links" id="navLinks">
-  <li><a href="#blogs">Blogs</a></li>
-  <li><a href="#about">About</a></li>
-  <li><a href="#contact">Contact</a></li>
-</ul>
 
 <header>
   <h1>WELCOME TO D-NIXON'S BLOGS</h1>
 </header>
 
 <div class="profile" id="profile">
-  <img src="profile.jpg" alt="Profile Picture">
+  <img src="profile.jpg" alt="Profile Picture" />
 </div>
 
 <div class="container">
   <div id="blogs">
     <div class="blog-card">
-      <img src="blog1-img.png" alt="Blog 1">
+      <img src="blog1-img.png" alt="Blog 1" />
       <div class="blog-content">
         <h3>Many Lives, One Face</h3>
         <p>Exploring AI character design across multiple styles and personalities.</p>
@@ -344,7 +266,7 @@
       </div>
     </div>
     <div class="blog-card">
-      <img src="blog2-img.jpg" alt="Blog 2">
+      <img src="blog2-img.jpg" alt="Blog 2" />
       <div class="blog-content">
         <h3>The Rise of AI Portraits</h3>
         <p>How AI is revolutionizing portrait art in modern digital galleries.</p>
@@ -367,9 +289,9 @@
     </div>
 
     <div class="footer-icons">
-      <a href="https://instagram.com/" target="_blank"><img src="instagram.png" alt="Instagram"></a>
-      <a href="https://x.com/" target="_blank"><img src="x.png" alt="X"></a>
-      <a href="https://linkedin.com/" target="_blank"><img src="linkedin.png" alt="LinkedIn"></a>
+      <a href="https://instagram.com/" target="_blank"><img src="instagram.png" alt="Instagram" /></a>
+      <a href="https://x.com/" target="_blank"><img src="x.png" alt="X" /></a>
+      <a href="https://linkedin.com/" target="_blank"><img src="linkedin.png" alt="LinkedIn" /></a>
     </div>
 
     <div class="copyright">
@@ -380,33 +302,10 @@
 
 <script>
   const navLinks = document.getElementById('navLinks');
-  const mobileSearchBox = document.getElementById('mobileSearchBox');
   const menuToggle = document.getElementById('menuToggle');
-  const searchToggle = document.getElementById('searchToggle');
 
   menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('show');
-    if (window.innerWidth <= 768 && mobileSearchBox.style.display === 'flex') {
-      mobileSearchBox.style.display = 'none';
-    }
-  });
-
-  searchToggle.addEventListener('click', () => {
-    if (mobileSearchBox.style.display === 'flex') {
-      mobileSearchBox.style.display = 'none';
-    } else {
-      mobileSearchBox.style.display = 'flex';
-      navLinks.classList.remove('show');
-    }
-  });
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      mobileSearchBox.style.display = 'flex';
-      navLinks.classList.remove('show');
-    } else {
-      mobileSearchBox.style.display = 'none';
-    }
   });
 </script>
 
