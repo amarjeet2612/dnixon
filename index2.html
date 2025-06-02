@@ -31,7 +31,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      text-decoration: none;
     }
 
     .logo-box {
@@ -58,15 +57,14 @@
       left: 50%;
       transform: translateX(-50%);
       top: 10px;
-      width: 320px;
+      width: 300px;
       background: rgba(128, 128, 128, 0.3);
       padding: 5px 10px;
       border-radius: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       display: flex;
       align-items: center;
       transition: all 0.3s ease;
-      z-index: 1001;
     }
 
     .search-container input {
@@ -80,17 +78,12 @@
       color: #333;
     }
 
-    .clear-btn {
-      font-size: 20px;
-      color: #666;
+    .search-container .clear-btn {
+      font-size: 18px;
+      color: #333;
       cursor: pointer;
-      margin-left: 8px;
-      user-select: none;
-      transition: color 0.2s ease;
-    }
-
-    .clear-btn:hover {
-      color: #000;
+      background: transparent;
+      border: none;
     }
 
     .hamburger, .search-icon {
@@ -120,16 +113,19 @@
     }
 
     ul.nav-links {
-      display: flex;
+      display: none;
       flex-direction: row;
       gap: 20px;
       background: white;
-      position: static;
-      padding: 0;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      padding: 10px 20px;
       margin: 0;
       list-style: none;
       justify-content: center;
-      animation: none;
+      animation: slideDown 0.3s ease forwards;
     }
 
     ul.nav-links li a {
@@ -137,11 +133,6 @@
       font-weight: 600;
       color: #333;
       font-size: 18px;
-      cursor: pointer;
-    }
-
-    ul.nav-links li a:hover {
-      color: #4facfe;
     }
 
     @keyframes slideDown {
@@ -241,7 +232,6 @@
       padding: 40px 0;
       color: white;
       text-shadow: 1px 1px 3px black;
-      margin-top: 40px;
     }
 
     .footer-icons {
@@ -251,31 +241,21 @@
       margin-top: 20px;
     }
 
-    .footer-icons a {
-      display: inline-block;
+    .footer-icons img {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       background: white;
       padding: 5px;
-      transition: background 0.3s ease;
+      transition: 0.3s;
     }
 
-    .footer-icons a:hover {
+    .footer-icons img:hover {
       background: #00f2fe;
-    }
-
-    .footer-icons img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: contain;
-      pointer-events: none; /* to avoid img intercepting clicks */
     }
 
     .about h2, .contact h2 {
       color: white;
-      margin-bottom: 10px;
     }
 
     .copyright {
@@ -294,14 +274,19 @@
         display: none;
         background: white;
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        position: fixed;
       }
 
       .search-container input {
         font-size: 14px;
         padding: 6px 10px;
+      }
+
+      .search-container .clear-btn {
+        font-size: 16px;
         color: #333;
+        cursor: pointer;
         background: transparent;
+        border: none;
       }
 
       .search-icon {
@@ -316,15 +301,7 @@
         left: 0;
         right: 0;
         background: white;
-        position: fixed;
         display: none;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        padding: 15px 0;
-        z-index: 1000;
-      }
-
-      ul.nav-links.show {
-        display: flex;
       }
 
       .blog-card img {
@@ -337,10 +314,9 @@
         text-align: center;
       }
 
-      .footer-icons a {
+      .footer-icons img {
         width: 30px;
         height: 30px;
-        padding: 3px;
       }
 
       .profile img {
@@ -361,14 +337,14 @@
 <body>
 
 <nav>
-  <a href="#" class="logo-area">
+  <a href="#" class="logo-area" style="text-decoration: none;">
     <div class="logo-box">DN</div>
     <div class="logo-text">DNIXON</div>
   </a>
 
   <div class="search-container" id="mobileSearchBox">
-    <input type="text" placeholder="Search" id="searchInput" onkeyup="filterBlogs()" autocomplete="off" />
-    <span class="clear-btn" id="clearSearchBtn" title="Clear search">&times;</span>
+    <input type="text" placeholder="Search" id="searchInput" onkeyup="filterBlogs()" />
+    <button class="clear-btn" onclick="clearSearch()">×</button>
   </div>
 
   <div style="display: flex; align-items: center; gap: 10px;">
@@ -402,7 +378,7 @@
       <div class="blog-content">
         <h3>Many Lives, One Face</h3>
         <p>Exploring AI character design across multiple styles and personalities.</p>
-        <a href="blog1.html" target="_blank" rel="noopener noreferrer">Read Full Blog</a>
+        <a href="blog1.html" target="_blank">Read Full Blog</a>
       </div>
     </div>
     <div class="blog-card">
@@ -410,7 +386,7 @@
       <div class="blog-content">
         <h3>The Rise of AI Portraits</h3>
         <p>How AI is revolutionizing portrait art in modern digital galleries.</p>
-        <a href="blog2.html" target="_blank" rel="noopener noreferrer">Read Full Blog</a>
+        <a href="blog2.html" target="_blank">Read Full Blog</a>
       </div>
     </div>
   </div>
@@ -425,8 +401,36 @@
 
     <div class="contact" id="contact">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:amarjeetk2612@gmail.com" style="color: white; text-decoration: underline;">amarjeetk2612@gmail.com</a></p>
+      <p>Email: amarjeetk2612@gmail.com</p>
     </div>
 
     <div class="footer-icons">
-      <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer"><img src="instagram.png" alt="Instagram
+      <a href="https://instagram.com/" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+      <a href="https://x.com/" target="_blank"><img src="x.png" alt="X"></a>
+      <a href="https://linkedin.com/" target="_blank"><img src="linkedin.png" alt="LinkedIn"></a>
+    </div>
+
+    <div class="copyright">
+      © 2025 D-NIXON. All rights reserved.
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function toggleSearch() {
+    const searchBox = document.getElementById('mobileSearchBox');
+    if (searchBox.style.display === 'flex') {
+      searchBox.style.display = 'none';
+    } else {
+      searchBox.style.display = 'flex';
+      searchBox.querySelector('input').focus();
+    }
+  }
+
+  function clearSearch() {
+    const searchInput =
