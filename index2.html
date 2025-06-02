@@ -265,10 +265,17 @@
     @media (max-width: 768px) {
       .search-container {
         width: 80%;
-        top: 65px;
+        top: 60px;
         left: 50%;
         transform: translateX(-50%);
-        display: flex !important;
+        display: none;
+        background: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      }
+
+      .search-container input {
+        font-size: 14px;
+        padding: 6px 10px;
       }
 
       .search-icon {
@@ -279,7 +286,7 @@
         flex-direction: column;
         align-items: center;
         gap: 15px;
-        top: 120px;
+        top: 100px;
         left: 0;
         right: 0;
         background: white;
@@ -405,8 +412,12 @@
 
   function toggleSearch() {
     const searchBox = document.getElementById('mobileSearchBox');
-    const currentDisplay = window.getComputedStyle(searchBox).display;
-    searchBox.style.display = (currentDisplay === 'none' || currentDisplay === '') ? 'flex' : 'none';
+    if (searchBox.style.display === 'flex') {
+      searchBox.style.display = 'none';
+    } else {
+      searchBox.style.display = 'flex';
+      searchBox.querySelector('input').focus();
+    }
   }
 </script>
 
