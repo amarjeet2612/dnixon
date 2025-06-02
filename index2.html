@@ -31,7 +31,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      text-decoration: none;
     }
 
     .logo-box {
@@ -54,20 +53,18 @@
     }
 
     .search-container {
-      position: fixed; /* Changed from absolute */
-      top: 60px;
+      position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      width: 90%;
-      max-width: 300px;
+      top: 10px;
+      width: 300px;
       background: rgba(128, 128, 128, 0.3);
       padding: 5px 10px;
       border-radius: 20px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      display: none; /* hidden by default on mobile */
+      display: flex;
       align-items: center;
       transition: all 0.3s ease;
-      z-index: 1001;
     }
 
     .search-container input {
@@ -79,16 +76,14 @@
       font-size: 16px;
       border-radius: 20px;
       color: #333;
-      max-width: 100%;
     }
 
     .hamburger, .search-icon {
       display: flex;
       flex-direction: column;
       cursor: pointer;
-      z-index: 1002;
+      z-index: 1001;
       margin-left: 10px;
-      user-select: none;
     }
 
     .search-icon {
@@ -101,38 +96,33 @@
       padding: 5px;
     }
 
+    .search-icon img {
+      width: 24px;
+      height: 24px;
+    }
+
     .hamburger span {
       height: 3px;
       width: 25px;
       background: #333;
       margin: 3px 0;
       border-radius: 5px;
-      transition: all 0.3s ease;
-    }
-
-    /* Hamburger animation when active */
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
     }
 
     ul.nav-links {
-      display: flex;
+      display: none;
       flex-direction: row;
       gap: 20px;
       background: white;
-      position: static; /* changed from absolute */
-      padding: 0;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      padding: 10px 20px;
       margin: 0;
       list-style: none;
       justify-content: center;
-      transition: max-height 0.3s ease;
-      overflow: hidden;
+      animation: slideDown 0.3s ease forwards;
     }
 
     ul.nav-links li a {
@@ -140,8 +130,17 @@
       font-weight: 600;
       color: #333;
       font-size: 18px;
-      display: block;
-      padding: 10px 5px;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     header {
@@ -153,7 +152,7 @@
 
     header h1 {
       margin: 0;
-      font-size: 2.5rem;
+      font-size: 2.5rem; /* Desktop font size */
     }
 
     .profile {
@@ -237,7 +236,6 @@
       justify-content: center;
       gap: 20px;
       margin-top: 20px;
-      flex-wrap: wrap;
     }
 
     .footer-icons img {
@@ -264,10 +262,13 @@
       font-size: 14px;
     }
 
-    /* MOBILE STYLES */
     @media (max-width: 768px) {
       .search-container {
-        /* still hidden by default, toggled by JS */
+        width: 90%;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none; /* hide by default in mobile */
       }
 
       .search-icon {
@@ -278,13 +279,11 @@
         flex-direction: column;
         align-items: center;
         gap: 15px;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-      }
-
-      ul.nav-links.show {
-        max-height: 300px; /* enough to show links */
+        top: 100px;
+        left: 0;
+        right: 0;
+        background: white;
+        display: none;
       }
 
       .blog-card img {
@@ -311,8 +310,9 @@
         font-size: 18px;
       }
 
-      header {
-        padding: 40px 20px;
+      /* Mobile friendly header h1 font size */
+      header h1 {
+        font-size: 1.8rem;
       }
     }
   </style>
@@ -320,7 +320,7 @@
 <body>
 
 <nav>
-  <a href="#" class="logo-area">
+  <a href="#" class="logo-area" style="text-decoration: none;">
     <div class="logo-box">DN</div>
     <div class="logo-text">DNIXON</div>
   </a>
@@ -333,7 +333,7 @@
     <div class="search-icon" onclick="toggleSearch()">
       <i class="fas fa-search"></i>
     </div>
-    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <div class="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
   </div>
@@ -389,4 +389,16 @@
     <div class="footer-icons">
       <a href="https://instagram.com/" target="_blank"><img src="instagram.png" alt="Instagram"></a>
       <a href="https://x.com/" target="_blank"><img src="x.png" alt="X"></a>
-      <a href="https://linkedin.com/" target="_blank"><img src="linkedin.png" alt="Linked
+      <a href="https://linkedin.com/" target="_blank"><img src="linkedin.png" alt="LinkedIn"></a>
+    </div>
+
+    <div class="copyright">
+      © 2025 D-NIXON. All rights reserved.
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.style.display = navLinks.style
