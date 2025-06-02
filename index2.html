@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DNIXON</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DNIXON Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
       background: #f5f7fa;
+      color: #333;
     }
 
     nav {
@@ -23,7 +24,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       flex-wrap: wrap;
     }
 
@@ -31,6 +32,8 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
+      color: #333;
     }
 
     .logo-box {
@@ -49,23 +52,19 @@
     .logo-text {
       font-weight: bold;
       font-size: 22px;
-      color: #333;
+      user-select: none;
     }
 
     .search-container {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 10px;
-      width: 300px;
-      background: rgba(128, 128, 128, 0.3);
-      padding: 5px 10px;
+      position: relative;
+      max-width: 300px;
+      flex-grow: 1;
+      margin: 0 20px;
+      background: rgba(128, 128, 128, 0.15);
       border-radius: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       display: flex;
       align-items: center;
-      transition: all 0.3s ease;
-      gap: 10px; /* added gap for spacing between input and clear button */
+      padding: 4px 12px;
     }
 
     .search-container input {
@@ -73,68 +72,42 @@
       border: none;
       outline: none;
       background: transparent;
-      padding: 8px 12px;
+      padding: 8px 10px;
       font-size: 16px;
       border-radius: 20px;
       color: #333;
     }
 
-    /* Clear button style */
-    .clear-btn {
-      cursor: pointer;
+    #clearBtn {
+      background: transparent;
+      border: none;
       font-size: 20px;
-      color: #666;
+      cursor: pointer;
+      color: #555;
+      padding: 0 6px;
+      display: none; /* hidden initially */
       user-select: none;
-      padding: 0 5px;
-      transition: color 0.3s;
-      border-radius: 50%;
-      line-height: 1;
-    }
-    .clear-btn:hover {
-      color: #000;
-      background: #ddd;
     }
 
     .hamburger, .search-icon {
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      z-index: 1001;
-      margin-left: 10px;
-    }
-
-    .search-icon {
       display: none;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      font-size: 20px;
-      color: #333;
-      padding: 5px;
+      cursor: pointer;
     }
 
     .hamburger span {
       height: 3px;
       width: 25px;
       background: #333;
-      margin: 3px 0;
+      margin: 4px 0;
       border-radius: 5px;
     }
 
     ul.nav-links {
-      display: none;
-      flex-direction: row;
-      gap: 20px;
-      background: white;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      right: 0;
-      padding: 10px 20px;
-      margin: 0;
       list-style: none;
-      justify-content: center;
-      animation: slideDown 0.3s ease forwards;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
     }
 
     ul.nav-links li a {
@@ -142,17 +115,12 @@
       font-weight: 600;
       color: #333;
       font-size: 18px;
+      user-select: none;
     }
 
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    ul.nav-links li a:hover {
+      color: #00f2fe;
+      transition: color 0.3s ease;
     }
 
     header {
@@ -160,11 +128,13 @@
       text-align: center;
       color: white;
       padding: 60px 20px;
+      user-select: none;
     }
 
     header h1 {
       margin: 0;
       font-size: 2.5rem;
+      letter-spacing: 1.5px;
     }
 
     .profile {
@@ -178,6 +148,7 @@
       border-radius: 50%;
       border: 5px solid white;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      user-select: none;
     }
 
     .container {
@@ -198,6 +169,7 @@
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
       overflow: hidden;
       transition: transform 0.3s ease;
+      user-select: none;
     }
 
     .blog-card:hover {
@@ -218,6 +190,13 @@
       margin: 0 0 10px 0;
     }
 
+    .blog-card p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.4;
+      margin: 0;
+    }
+
     .blog-card a {
       display: inline-block;
       margin-top: 10px;
@@ -226,7 +205,8 @@
       text-decoration: none;
       padding: 8px 14px;
       border-radius: 6px;
-      transition: 0.3s;
+      font-weight: 600;
+      transition: background 0.3s ease;
     }
 
     .blog-card a:hover {
@@ -234,103 +214,44 @@
       color: white;
     }
 
-    .footer-bg {
-      background-image: url('ai_footer_bg.jpg');
-      background-size: cover;
-      background-position: center;
-      padding: 40px 0;
-      color: white;
-      text-shadow: 1px 1px 3px black;
-    }
-
-    .footer-icons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .footer-icons img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: white;
-      padding: 5px;
-      transition: 0.3s;
-    }
-
-    .footer-icons img:hover {
-      background: #00f2fe;
-    }
-
-    .about h2, .contact h2 {
-      color: white;
-    }
-
-    .copyright {
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 20px 10px;
       text-align: center;
-      margin-top: 30px;
-      color: white;
       font-size: 14px;
+      user-select: none;
     }
 
+    /* Responsive Styles */
     @media (max-width: 768px) {
       .search-container {
-        width: 80%;
-        top: 60px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: none;
-        background: white;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      }
-
-      .search-container input {
-        font-size: 14px;
-        padding: 6px 10px;
-      }
-
-      .search-icon {
-        display: flex;
+        max-width: 100%;
+        margin: 10px 0;
       }
 
       ul.nav-links {
+        display: none;
         flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        top: 100px;
+        background: white;
+        position: absolute;
+        top: 60px;
         left: 0;
         right: 0;
-        background: white;
-        display: none;
+        padding: 10px 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       }
 
-      .blog-card img {
-        height: 180px;
-        object-fit: cover;
+      ul.nav-links.show {
+        display: flex;
       }
 
-      .footer-bg {
-        padding: 20px 10px;
-        text-align: center;
+      .hamburger {
+        display: block;
       }
 
-      .footer-icons img {
-        width: 30px;
-        height: 30px;
-      }
-
-      .profile img {
-        width: 100px;
-        height: 100px;
-      }
-
-      .logo-text {
-        font-size: 18px;
-      }
-
-      header h1 {
-        font-size: 1.6rem;
+      nav {
+        justify-content: space-between;
       }
     }
   </style>
@@ -338,110 +259,113 @@
 <body>
 
 <nav>
-  <a href="#" class="logo-area" style="text-decoration: none;">
+  <a href="#" class="logo-area">
     <div class="logo-box">DN</div>
     <div class="logo-text">DNIXON</div>
   </a>
 
-  <div class="search-container" id="mobileSearchBox">
-    <input type="text" placeholder="Search" id="searchInput" onkeyup="filterBlogs()" />
-    <span class="clear-btn" onclick="clearSearch()">×</span>
+  <div class="search-container">
+    <input type="text" placeholder="Search blogs..." id="searchInput" onkeyup="filterBlogs(); toggleClearBtn()" />
+    <button id="clearBtn" onclick="clearSearch()" title="Clear search">&times;</button>
   </div>
 
-  <div style="display: flex; align-items: center; gap: 10px;">
-    <div class="search-icon" onclick="toggleSearch()">
-      <i class="fas fa-search"></i>
-    </div>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#blogs">Blogs</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
-
-<ul class="nav-links" id="navLinks">
-  <li><a href="#blogs">Blogs</a></li>
-  <li><a href="#about">About</a></li>
-  <li><a href="#contact">Contact</a></li>
-</ul>
 
 <header>
   <h1>WELCOME TO D-NIXON'S BLOGS</h1>
 </header>
 
-<div class="profile" id="profile">
-  <img src="profile.jpg" alt="Profile Picture">
+<div class="profile">
+  <img src="profile.jpg" alt="Profile Picture" />
 </div>
 
 <div class="container">
-  <div id="blogs">
+  <section id="blogs">
     <div class="blog-card">
-      <img src="blog1-img.png" alt="Blog 1">
+      <img src="blog1-img.png" alt="Blog 1" />
       <div class="blog-content">
         <h3>Many Lives, One Face</h3>
         <p>Exploring AI character design across multiple styles and personalities.</p>
-        <a href="blog1.html" target="_blank">Read Full Blog</a>
+        <a href="blog1.html" target="_blank" rel="noopener noreferrer">Read Full Blog</a>
       </div>
     </div>
     <div class="blog-card">
-      <img src="blog2-img.jpg" alt="Blog 2">
+      <img src="blog2-img.jpg" alt="Blog 2" />
       <div class="blog-content">
-        <h3>The Rise of AI Portraits</h3>
-        <p>How AI is revolutionizing portrait art in modern digital galleries.</p>
-        <a href="blog2.html" target="_blank">Read Full Blog</a>
+        <h3>The Rise of AI</h3>
+        <p>How artificial intelligence is transforming the creative world.</p>
+        <a href="blog2.html" target="_blank" rel="noopener noreferrer">Read Full Blog</a>
       </div>
     </div>
-  </div>
+    <div class="blog-card">
+      <img src="blog3-img.jpg" alt="Blog 3" />
+      <div class="blog-content">
+        <h3>Tech & Tradition</h3>
+        <p>Balancing modern tech innovations with classic engineering wisdom.</p>
+        <a href="blog3.html" target="_blank" rel="noopener noreferrer">Read Full Blog</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="margin-top: 60px;">
+    <h2>About DNIXON</h2>
+    <p>DNIXON is your go-to blog for the latest insights on AI, engineering, and tech innovation, presented with a blend of traditional values and future-forward thinking.</p>
+  </section>
+
+  <section id="contact" style="margin-top: 60px;">
+    <h2>Contact</h2>
+    <p>Feel free to reach out via email: <a href="mailto:amarjeetrd01@gmail.com">amarjeetrd01@gmail.com</a></p>
+  </section>
 </div>
 
-<div class="footer-bg">
-  <div class="container">
-    <div class="about" id="about">
-      <h2>About Me</h2>
-      <p>Hey! I'm AMARJEET aka D-NIXON. I create AI characters using ChatGPT, Tensor Art, Kling and more.</p>
-    </div>
-
-    <div class="contact" id="contact">
-      <h2>Contact</h2>
-      <p>Email: amarjeetk2612@gmail.com</p>
-    </div>
-
-    <div class="footer-icons">
-      <a href="https://instagram.com/" target="_blank"><img src="instagram.png" alt="Instagram"></a>
-      <a href="https://x.com/" target="_blank"><img src="x.png" alt="X"></a>
-      <a href="https://linkedin.com/" target="_blank"><img src="linkedin.png" alt="LinkedIn"></a>
-    </div>
-
-    <div class="copyright">
-      © 2025 D-NIXON. All rights reserved.
-    </div>
-  </div>
-</div>
+<footer>
+  &copy; 2025 DNIXON. All rights reserved.
+</footer>
 
 <script>
-  function toggleMenu() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-  }
+  const navLinks = document.getElementById('navLinks');
+  const clearBtn = document.getElementById('clearBtn');
+  const searchInput = document.getElementById('searchInput');
 
-  function toggleSearch() {
-    const searchBox = document.getElementById('mobileSearchBox');
-    if (searchBox.style.display === 'flex') {
-      searchBox.style.display = 'none';
-    } else {
-      searchBox.style.display = 'flex';
-      searchBox.querySelector('input').focus();
-    }
+  function toggleMenu() {
+    navLinks.classList.toggle('show');
   }
 
   function filterBlogs() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
-    const blogs = document.querySelectorAll(".blog-card");
+    const filter = searchInput.value.toLowerCase();
+    const blogs = document.querySelectorAll('#blogs .blog-card');
 
     blogs.forEach(blog => {
-      const title = blog.querySelector("h3").textContent.toLowerCase();
-      const desc = blog.querySelector("p").textContent.toLowerCase();
+      const text = blog.textContent.toLowerCase();
+      blog.style.display = text.includes(filter) ? 'block' : 'none';
+    });
+  }
 
-      if (title.includes(input) || desc.includes(input)) {
-        blog.style.display = "block";
-      } else {
-        blog.style.display = "
+  function toggleClearBtn() {
+    clearBtn.style.display = searchInput.value.length > 0 ? 'inline' : 'none';
+  }
+
+  function clearSearch() {
+    searchInput.value = '';
+    filterBlogs();
+    toggleClearBtn();
+    searchInput.focus();
+  }
+
+  // Initialize clear button visibility on page load
+  toggleClearBtn();
+</script>
+
+</body>
+</html>
