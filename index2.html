@@ -61,10 +61,11 @@
       background: rgba(128, 128, 128, 0.3);
       padding: 5px 10px;
       border-radius: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       display: flex;
       align-items: center;
       transition: all 0.3s ease;
+      gap: 10px; /* added gap for spacing between input and clear button */
     }
 
     .search-container input {
@@ -78,12 +79,20 @@
       color: #333;
     }
 
-    .search-container .clear-btn {
-      font-size: 18px;
-      color: #333;
+    /* Clear button style */
+    .clear-btn {
       cursor: pointer;
-      background: transparent;
-      border: none;
+      font-size: 20px;
+      color: #666;
+      user-select: none;
+      padding: 0 5px;
+      transition: color 0.3s;
+      border-radius: 50%;
+      line-height: 1;
+    }
+    .clear-btn:hover {
+      color: #000;
+      background: #ddd;
     }
 
     .hamburger, .search-icon {
@@ -281,14 +290,6 @@
         padding: 6px 10px;
       }
 
-      .search-container .clear-btn {
-        font-size: 16px;
-        color: #333;
-        cursor: pointer;
-        background: transparent;
-        border: none;
-      }
-
       .search-icon {
         display: flex;
       }
@@ -344,7 +345,7 @@
 
   <div class="search-container" id="mobileSearchBox">
     <input type="text" placeholder="Search" id="searchInput" onkeyup="filterBlogs()" />
-    <button class="clear-btn" onclick="clearSearch()">×</button>
+    <span class="clear-btn" onclick="clearSearch()">×</span>
   </div>
 
   <div style="display: flex; align-items: center; gap: 10px;">
@@ -432,5 +433,15 @@
     }
   }
 
-  function clearSearch() {
-    const searchInput =
+  function filterBlogs() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const blogs = document.querySelectorAll(".blog-card");
+
+    blogs.forEach(blog => {
+      const title = blog.querySelector("h3").textContent.toLowerCase();
+      const desc = blog.querySelector("p").textContent.toLowerCase();
+
+      if (title.includes(input) || desc.includes(input)) {
+        blog.style.display = "block";
+      } else {
+        blog.style.display = "
