@@ -65,7 +65,6 @@
       display: flex;
       align-items: center;
       transition: all 0.3s ease;
-      gap: 8px; /* Added gap for cross button spacing */
     }
 
     .search-container input {
@@ -79,19 +78,14 @@
       color: #333;
     }
 
-    /* New cross button style */
     .clear-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
       cursor: pointer;
-      font-size: 18px;
-      color: #333;
-      user-select: none;
-      padding: 0 6px;
-      border-radius: 50%;
-      transition: background-color 0.3s ease;
-    }
-
-    .clear-btn:hover {
-      background-color: rgba(0,0,0,0.1);
+      color: #666;
+      padding: 0 8px;
+      display: none;
     }
 
     .hamburger, .search-icon {
@@ -344,8 +338,7 @@
 
   <div class="search-container" id="mobileSearchBox">
     <input type="text" placeholder="Search" id="searchInput" onkeyup="filterBlogs()" />
-    <!-- Cross button added here -->
-    <div class="clear-btn" onclick="clearSearch()">&times;</div>
+    <button class="clear-btn" id="clearSearch" onclick="clearSearch()">×</button>
   </div>
 
   <div style="display: flex; align-items: center; gap: 10px;">
@@ -418,4 +411,44 @@
 </div>
 
 <script>
-  function toggleMenu()
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function toggleSearch() {
+    const searchBox = document.getElementById('mobileSearchBox');
+    if (searchBox.style.display === 'flex') {
+      searchBox.style.display = 'none';
+    } else {
+      searchBox.style.display = 'flex';
+      document.getElementById('searchInput').focus();
+    }
+  }
+
+  function filterBlogs() {
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toLowerCase();
+    const clearBtn = document.getElementById("clearSearch");
+    clearBtn.style.display = filter.length > 0 ? 'inline' : 'none';
+
+    const blogs = document.querySelectorAll(".blog-card");
+
+    blogs.forEach(blog => {
+      const title = blog.querySelector("h3").textContent.toLowerCase();
+      const desc = blog.querySelector("p").textContent.toLowerCase();
+
+      blog.style.display = title.includes(filter) || desc.includes(filter) ? "block" : "none";
+    });
+  }
+
+  function clearSearch() {
+    const input = document.getElementById("searchInput");
+    input.value = "";
+    filterBlogs();
+    input.focus();
+  }
+</script>
+
+</body>
+      </html>
