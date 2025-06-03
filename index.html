@@ -78,6 +78,16 @@
       color: #333;
     }
 
+    .clear-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #666;
+      padding: 0 8px;
+      display: none;
+    }
+
     .hamburger, .search-icon {
       display: flex;
       flex-direction: column;
@@ -328,6 +338,7 @@
 
   <div class="search-container" id="mobileSearchBox">
     <input type="text" placeholder="Search" id="searchInput" onkeyup="filterBlogs()" />
+    <button class="clear-btn" id="clearSearch" onclick="clearSearch()">×</button>
   </div>
 
   <div style="display: flex; align-items: center; gap: 10px;">
@@ -411,26 +422,33 @@
       searchBox.style.display = 'none';
     } else {
       searchBox.style.display = 'flex';
-      searchBox.querySelector('input').focus();
+      document.getElementById('searchInput').focus();
     }
   }
 
   function filterBlogs() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toLowerCase();
+    const clearBtn = document.getElementById("clearSearch");
+    clearBtn.style.display = filter.length > 0 ? 'inline' : 'none';
+
     const blogs = document.querySelectorAll(".blog-card");
 
     blogs.forEach(blog => {
       const title = blog.querySelector("h3").textContent.toLowerCase();
       const desc = blog.querySelector("p").textContent.toLowerCase();
 
-      if (title.includes(input) || desc.includes(input)) {
-        blog.style.display = "block";
-      } else {
-        blog.style.display = "none";
-      }
+      blog.style.display = title.includes(filter) || desc.includes(filter) ? "block" : "none";
     });
+  }
+
+  function clearSearch() {
+    const input = document.getElementById("searchInput");
+    input.value = "";
+    filterBlogs();
+    input.focus();
   }
 </script>
 
 </body>
-  </html>
+        </html>
