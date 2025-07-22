@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D Fashion</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
+
+.nav-toggle {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.search-container input {
+  border: none;
+  outline: none;
+  padding: 5px;
+}
+
+.search-container i {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.menu a {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  color: black;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background-color: #f4f4f4;
+}
+
+.show {
+  display: flex;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">D FASHION</div>
+    <div class="nav-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>  <div class="search-container">
+    <i class="fas fa-search"></i>
+    <input type="text" placeholder="Search..." id="searchBox" />
+    <i class="fas fa-times" onclick="clearSearch()"></i>
+  </div>  <div class="menu" id="menu">
+    <a href="#">Home</a>
+    <a href="#">Mens</a>
+    <a href="#">Womens</a>
+    <a href="#">New Arrivals</a>
+    <a href="#">Track Your Order</a>
+    <a href="#">Customer Reviews</a>
+    <a href="#">Contact</a>
+    <a href="#">Wholesale Enquiry</a>
+    <a href="#">Return Policy</a>
+    <a href="#">Blogs</a>
+  </div>  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
+
+    function clearSearch() {
+      document.getElementById("searchBox").value = "";
+    }
+  </script></body>
+</html>
