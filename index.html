@@ -1,112 +1,160 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>D Fashion</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-    }header {
+    }.navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  justify-content: space-between;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.hamburger {
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .logo {
-  font-size: 24px;
   font-weight: bold;
-  color: black;
+  font-size: 20px;
 }
 
-.nav-toggle {
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.search-container {
+.icons {
   display: flex;
+  gap: 15px;
   align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 5px;
-  margin: 10px;
 }
 
-.search-container input {
-  border: none;
-  outline: none;
-  padding: 5px;
-}
-
-.search-container i {
-  margin: 0 5px;
-  cursor: pointer;
-}
-
-.menu {
+.search-box {
   display: none;
   flex-direction: column;
-  position: absolute;
-  top: 60px;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #000;
+  padding: 5px 10px;
+}
+
+.search-input-container input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.search-results {
+  padding-top: 10px;
+}
+
+.search-results div {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  padding: 20px;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.menu a {
-  padding: 15px 20px;
-  border-bottom: 1px solid #eee;
-  color: black;
-  text-decoration: none;
-}
-
-.menu a:hover {
-  background-color: #f4f4f4;
-}
-
-.show {
-  display: flex;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 998;
 }
 
   </style>
-</head>
-<body>
-  <header>
+</head><body>
+  <div class="navbar">
+    <i class="fas fa-bars hamburger" onclick="openDrawer()"></i>
     <div class="logo">D FASHION</div>
-    <div class="nav-toggle" onclick="toggleMenu()">
-      <i class="fas fa-bars"></i>
+    <div class="icons">
+      <i class="fas fa-search" onclick="toggleSearchBox()"></i>
     </div>
-  </header>  <div class="search-container">
-    <i class="fas fa-search"></i>
-    <input type="text" placeholder="Search..." id="searchBox" />
-    <i class="fas fa-times" onclick="clearSearch()"></i>
-  </div>  <div class="menu" id="menu">
-    <a href="#">Home</a>
-    <a href="#">Mens</a>
-    <a href="#">Womens</a>
-    <a href="#">New Arrivals</a>
-    <a href="#">Track Your Order</a>
-    <a href="#">Customer Reviews</a>
-    <a href="#">Contact</a>
-    <a href="#">Wholesale Enquiry</a>
-    <a href="#">Return Policy</a>
-    <a href="#">Blogs</a>
-  </div>  <script>
-    function toggleMenu() {
-      document.getElementById("menu").classList.toggle("show");
+  </div>  <div class="search-box" id="searchBox">
+    <div class="search-input-container">
+      <input type="text" id="searchInput" placeholder="Search" oninput="filterSearchResults()" />
+      <i class="fas fa-times" style="cursor:pointer; margin-left:10px;" onclick="clearSearchText()"></i>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+    <div style="text-align:right; padding-top:10px;">
+      <button onclick="toggleSearchBox()">&#10005;</button>
+    </div>
+  </div>  <div class="drawer" id="drawer">
+    <h3>Menu</h3>
+    <p><a href="#">Home</a></p>
+    <p><a href="#">T-Shirts</a></p>
+    <p><a href="#">Track Pants</a></p>
+  </div>  <div class="overlay" id="overlay" onclick="closeDrawer()"></div>  <script>
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('overlay');
+    const searchBox = document.getElementById('searchBox');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    function openDrawer() {
+      drawer.style.display = 'block';
+      overlay.style.display = 'block';
     }
 
-    function clearSearch() {
-      document.getElementById("searchBox").value = "";
+    function closeDrawer() {
+      drawer.style.display = 'none';
+      overlay.style.display = 'none';
     }
-  </script></body>
-</html>
+
+    function toggleSearchBox() {
+      if (searchBox.style.display === 'flex') {
+        searchBox.style.display = 'none';
+        searchInput.value = '';
+        searchResults.innerHTML = '';
+      } else {
+        searchBox.style.display = 'flex';
+        searchInput.focus();
+      }
+    }
+
+    function clearSearchText() {
+      searchInput.value = '';
+      searchResults.innerHTML = '';
+    }
+
+    const productData = [
+      'red t shirts',
+      'wine red polo pocket',
+      'premium cotton track pant red',
+      'pure cotton polo pocket t shirts (wine red)',
+      'pure cotton polo plain t shirts (wine red) without pocket',
+      'sports dry fit brick red polo t shirts (micro polyester)',
+      'pure cotton henley pocket t shirts (wine red)'
+    ];
+
+    function filterSearchResults() {
+      const query = searchInput.value.toLowerCase();
+      const filtered = productData.filter(item => item.toLowerCase().includes(query));
+      searchResults.innerHTML = filtered.map(item => `<div>${item}</div>`).join('');
+    }
+  </script></body></html>
